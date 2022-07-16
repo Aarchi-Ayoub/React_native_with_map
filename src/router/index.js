@@ -4,6 +4,8 @@ import {createNativeStackNavigator} from '@react-navigation/native-stack';
 // Views
 import Home from 'containers/Home';
 import Positions from 'containers/Positions';
+import Localisation from 'containers/Localisation';
+
 export default () => {
   const Stack = createNativeStackNavigator();
   return (
@@ -16,6 +18,13 @@ export default () => {
           }}
           name="Positions"
           component={Positions}
+        />
+        <Stack.Screen
+          name="Localisation"
+          options={{
+            title: 'Choisisez votre adresse',
+          }}
+          component={Localisation}
         />
       </Stack.Navigator>
     </NavigationContainer>
