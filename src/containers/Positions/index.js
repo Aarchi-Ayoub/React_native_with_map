@@ -4,6 +4,7 @@ import {Alert, Image, Linking, TouchableOpacity, View} from 'react-native';
 import MapView, {Marker} from 'react-native-maps';
 import Geolocation from '@react-native-community/geolocation';
 import MapViewDirections from 'react-native-maps-directions';
+import BottomSheet from './BottomSheet ';
 // styles
 import styles from './styles';
 // config
@@ -102,7 +103,7 @@ export default () => {
           onReady={result => markersFocus(result)}
         />
       </MapView>
-      <View style={styles.btnRow}>
+      {/* <View style={styles.btnRow}>
         <TouchableOpacity onPress={infoCall} style={styles.info}>
           <Image
             style={styles.btnImg}
@@ -117,7 +118,8 @@ export default () => {
             resizeMode="contain"
           />
         </TouchableOpacity>
-      </View>
+      </View> */}
+      <BottomSheet />
     </View>
   );
 };
