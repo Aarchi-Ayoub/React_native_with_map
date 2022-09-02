@@ -1,7 +1,13 @@
 import React from 'react';
-import Positions from 'containers/Positions';
+import {Provider} from 'react-redux';
+
+import store from './store';
 import Router from './router';
 
 export default () => {
-  return <Router />;
+  return (
+    <Provider store={store}>
+      <Router />
+    </Provider>
+  );
 };
