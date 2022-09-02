@@ -11,21 +11,21 @@ export default () => {
   return (
     <NavigationContainer>
       <Stack.Navigator>
-        {/* <Stack.Screen name="Home" component={Home} /> */}
-        <Stack.Screen
+        <Stack.Screen name="Home" component={Home} />
+        {/* <Stack.Screen
           options={{
             headerShown: false,
           }}
           name="Positions"
           component={Positions}
-        />
+        /> 
         <Stack.Screen
           name="Localisation"
           options={{
             title: 'Choisisez votre adresse',
           }}
           component={Localisation}
-        />
+        />*/}
       </Stack.Navigator>
     </NavigationContainer>
   );
