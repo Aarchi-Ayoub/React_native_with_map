@@ -1,52 +1,41 @@
-import React, {useRef, useState, useEffect} from 'react';
+import React, {useRef, useEffect} from 'react';
+import {useDispatch, useSelector} from 'react-redux';
 import {Alert, Image, Linking, TouchableOpacity, View} from 'react-native';
 import MapView, {Marker} from 'react-native-maps';
 import Geolocation from '@react-native-community/geolocation';
+import MapViewDirections from 'react-native-maps-directions';
 // styles
 import styles from './styles';
 // config
 import {MAP_KEY} from 'react-native-dotenv';
-import MapViewDirections from 'react-native-maps-directions';
+// actions
+import {setMyPosition} from 'slices/PositionSlice';
 export default () => {
   // Map ref
   const mapRef = useRef();
 
-  // local states
-  const [initialRegion, setInitialRegion] = useState({
-    latitude: 34.06446226508741,
-    longitude: -6.766739894829115,
-    latitudeDelta: 0.0922,
-    longitudeDelta: 0.0421,
-  });
+  // Read from store
+  const initialRegion = useSelector(state => state.Position?.coord);
+  const position = useSelector(state => state.Position?.cuurentPosition);
 
-  const [destination, setDestination] = useState({
-    latitude: 34.04462741332137,
-    longitude: -6.805901019164147,
-  });
+  const destination = useSelector(state => state.Destination?.start);
+  const depart = useSelector(state => state.Destination?.end);
 
-  const [depart, setDepart] = useState({
-    latitude: 34.075763534330086,
-    longitude: -6.771591746405573,
-  });
-
-  const [position, setPosition] = useState({
-    latitude: 0,
-    longitude: 0,
-    latitudeDelta: 0,
-    longitudeDelta: 0,
-  });
+  // Dispatch store actions
+  const dispatch = useDispatch();
 
   // Life cycle
   useEffect(() => {
     Geolocation.getCurrentPosition(pos => {
       const {coords} = pos;
-      setPosition({
-        latitude: coords.latitude,
-        longitude: coords.longitude,
-        latitudeDelta: 0.0421,
-        longitudeDelta: 0.0421,
-      });
-      console.log(pos);
+      dispatch(
+        setMyPosition({
+          latitude: coords.latitude,
+          longitude: coords.longitude,
+          latitudeDelta: 0.0421,
+          longitudeDelta: 0.0421,
+        }),
+      );
     }).catch(err => {
       console.log(err);
     });
@@ -94,7 +83,7 @@ export default () => {
       <MapView
         style={styles.containers}
         ref={mapRef}
-        initialRegion={initialRegion}
+        region={initialRegion}
         userInterfaceStyle={'dark'}
         showsUserLocation={true}
         userLocationPriority={'balanced'}>
