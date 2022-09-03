@@ -1,14 +1,16 @@
 import React, {useCallback, useMemo, useRef} from 'react';
-import {View, Text, StyleSheet, Button} from 'react-native';
-import {BottomSheetModal, BottomSheetModalProvider} from '@gorhom/bottom-sheet';
+import {View, Image} from 'react-native';
 import {TouchableOpacity} from 'react-native-gesture-handler';
+import {BottomSheetModal, BottomSheetBackdrop} from '@gorhom/bottom-sheet';
+// Styles
+import styles from './styles';
 
 const App = () => {
   // ref
   const bottomSheetModalRef = useRef<BottomSheetModal>(null);
 
   // variables
-  const snapPoints = useMemo(() => ['15%', '70%'], []);
+  const snapPoints = useMemo(() => ['15%', '40%'], []);
 
   // callbacks
   const handlePresentModalPress = useCallback(() => {
@@ -20,8 +22,28 @@ const App = () => {
       console.log('====================================');
     }
   }, []);
+  const closePresentModalPress = useCallback(() => {
+    try {
+      bottomSheetModalRef.current?.dismiss();
+    } catch (error) {
+      console.log('====================================');
+      console.log(error);
+      console.log('====================================');
+    }
+  }, []);
   const handleSheetChanges = useCallback((index: number) => {
     console.log('handleSheetChanges', index);
+  }, []);
+
+  // Fond gris sur le reste du view
+  const renderBackdrop = useCallback(props => {
+    return (
+      <BottomSheetBackdrop
+        {...props}
+        disappearsOnIndex={-1}
+        appearsOnIndex={0}
+      />
+    );
   }, []);
 
   // renders
@@ -32,27 +54,23 @@ const App = () => {
       <BottomSheetModal
         ref={bottomSheetModalRef}
         index={0}
+        backdropComponent={renderBackdrop}
         snapPoints={snapPoints}
         onChange={handleSheetChanges}>
         <View style={styles.contentContainer}>
-          <Text>Awesome 🎉</Text>
+          <TouchableOpacity
+            onPress={closePresentModalPress}
+            style={styles.closeContainer}>
+            <Image
+              source={require('assets/close.png')}
+              resizeMode="contain"
+              style={styles.closeImg}
+            />
+          </TouchableOpacity>
         </View>
       </BottomSheetModal>
     </TouchableOpacity>
   );
 };
-
-const styles = StyleSheet.create({
-  container: {
-    flex: 1,
-    padding: 24,
-    justifyContent: 'center',
-    backgroundColor: '#fff',
-  },
-  contentContainer: {
-    flex: 1,
-    alignItems: 'center',
-  },
-});
 
 export default App;
