@@ -6,29 +6,23 @@ export default ScaledSheet.create({
   },
 
   myPosition: {
-    position: 'absolute',
-    backgroundColor: 'white',
-    bottom: '50@vs',
     right: '20@s',
-    height: '50@vs',
-    width: '50@vs',
-    borderRadius: '50@vs',
-    justifyContent: 'center',
-    alignItems: 'center',
   },
   info: {
+    left: '20@s',
+  },
+  commonBtnStyles: {
     position: 'absolute',
     backgroundColor: 'white',
     bottom: '50@vs',
-    left: '20@s',
-    height: '50@vs',
-    width: '50@vs',
+    height: '30@vs',
+    width: '30@vs',
     borderRadius: '50@vs',
     justifyContent: 'center',
     alignItems: 'center',
   },
   btnImg: {
-    height: '30@vs',
-    width: '30@s',
+    height: '20@vs',
+    width: '20@s',
   },
 });

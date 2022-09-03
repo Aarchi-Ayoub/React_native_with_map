@@ -103,22 +103,26 @@ export default () => {
           onReady={result => markersFocus(result)}
         />
       </MapView>
-      {/* <View style={styles.btnRow}>
-        <TouchableOpacity onPress={infoCall} style={styles.info}>
+      <View style={styles.btnRow}>
+        <TouchableOpacity
+          onPress={infoCall}
+          style={[styles.info, styles.commonBtnStyles]}>
           <Image
             style={styles.btnImg}
             source={require('assets/infos.png')}
             resizeMode="contain"
           />
         </TouchableOpacity>
-        <TouchableOpacity onPress={myPosition} style={styles.myPosition}>
+        <TouchableOpacity
+          onPress={myPosition}
+          style={[styles.myPosition, styles.commonBtnStyles]}>
           <Image
             style={styles.btnImg}
             source={require('assets/myLocation.png')}
             resizeMode="contain"
           />
         </TouchableOpacity>
-      </View> */}
+      </View>
       <BottomSheet />
     </View>
   );
