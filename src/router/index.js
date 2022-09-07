@@ -19,13 +19,13 @@ export default () => {
           name="Positions"
           component={Positions}
         />
-        {/* <Stack.Screen
+        <Stack.Screen
           name="Localisation"
           options={{
             title: 'Choisisez votre adresse',
           }}
           component={Localisation}
-        />*/}
+        />
       </Stack.Navigator>
     </NavigationContainer>
   );
