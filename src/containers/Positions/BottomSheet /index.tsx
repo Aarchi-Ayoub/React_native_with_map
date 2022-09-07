@@ -136,6 +136,7 @@ const App = () => {
             data={data}
             extraData={data}
             contentContainerStyle={styles.list}
+            showsHorizontalScrollIndicator={false}
           />
           <TouchableOpacity
             onPress={navigate}
