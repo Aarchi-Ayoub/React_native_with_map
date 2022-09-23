@@ -12,7 +12,7 @@ export default ScaledSheet.create({
   },
   //
   btn: {
-    backgroundColor: '#000',
+    backgroundColor: 'purple',
     height: '39@vs',
     borderRadius: '8@ms',
     justifyContent: 'center',
