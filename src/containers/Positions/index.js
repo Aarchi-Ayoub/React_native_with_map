@@ -79,6 +79,7 @@ export default () => {
       Alert.alert(error);
     }
   };
+
   return (
     <View style={styles.containers}>
       <MapView
@@ -88,20 +89,22 @@ export default () => {
         userInterfaceStyle={'dark'}
         showsUserLocation={true}
         userLocationPriority={'balanced'}>
-        <Marker coordinate={destination} />
-        <Marker coordinate={depart} />
+        {destination?.latitude && <Marker coordinate={destination} />}
+        {depart?.latitude && <Marker coordinate={depart} />}
         <Marker coordinate={position} />
 
-        <MapViewDirections
-          apikey={MAP_KEY}
-          origin={depart}
-          destination={destination}
-          strokeColor="red"
-          strokeWidth={5}
-          optimizeWaypoints={true}
-          mode={'DRIVING'}
-          onReady={result => markersFocus(result)}
-        />
+        {depart?.latitude && (
+          <MapViewDirections
+            apikey={MAP_KEY}
+            origin={depart}
+            destination={destination}
+            strokeColor="red"
+            strokeWidth={5}
+            optimizeWaypoints={true}
+            mode={'DRIVING'}
+            onReady={result => markersFocus(result)}
+          />
+        )}
       </MapView>
       <View style={styles.btnRow}>
         <TouchableOpacity
