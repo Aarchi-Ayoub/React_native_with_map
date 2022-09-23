@@ -3,14 +3,8 @@ import {createSlice} from '@reduxjs/toolkit';
 export const destinationSlice = createSlice({
   name: 'destination',
   initialState: {
-    start: {
-      latitude: 34.075763534330086,
-      longitude: -6.771591746405573,
-    },
-    end: {
-      latitude: 34.04462741332137,
-      longitude: -6.805901019164147,
-    },
+    start: {},
+    end: {},
   },
   reducers: {
     setStart: (state, action) => {
